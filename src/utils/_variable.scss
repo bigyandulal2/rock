@@ -1,0 +1,43 @@
+$Scissors: mix(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+$Paper: mix(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+$Rock: mix(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+$Lizard: mix(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+$Cyan: mix(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+
+$Dark_Text: mix(
+  hsl(229, 25%, 31%),
+  hsl(229, 25%, 31%)
+); // same color, no blending needed
+$Score_Text: mix(
+  hsl(229, 64%, 46%),
+  hsl(229, 64%, 46%)
+); // same color, no blending needed
+$Header_Outline: mix(
+  hsl(217, 16%, 45%),
+  hsl(217, 16%, 45%)
+); // same color, no blending needed
+
+$Radial_Gradient: mix(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+
+$colors: (
+  "scissors": $Scissors,
+  "paper": $Paper,
+  "rock": $Rock,
+  "lizard": $Lizard,
+  "cyan": $Cyan,
+  "dark": $Dark_Text,
+  "score": $Score_Text,
+  "outline": $Header_Outline,
+  "radial": $Radial_Gradient,
+);
+// padding
+$padding: 2rem;
+
+@each $key, $val in $colors {
+  .text-#{$key} {
+    color: $val;
+  }
+  .bg-#{$key} {
+    background: $val;
+  }
+}

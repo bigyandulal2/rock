@@ -1,0 +1,236 @@
+@mixin responsive_width {
+  @include xl {
+    width: 60vw;
+  }
+  @include lg {
+    width: 70vw;
+  }
+  @include md {
+    width: 80vw;
+  }
+  @include sm {
+    width: 90vw;
+  }
+}
+.app {
+  height: 100vh;
+  width: 100vw;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 4rem;
+  @include lg {
+    gap: 0;
+    justify-content: space-evenly;
+  }
+  // @include sm {
+  //   height: fit-content;
+  // }
+}
+.header_box {
+  border: 1px solid white;
+  width: 50vw;
+  height: fit-content;
+  margin: 0 auto;
+  @include responsive_width;
+  @include sm {
+    margin: 10px auto;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
+
+// mixin
+@mixin game($bg: white) {
+  padding: $padding * 0.4;
+  background-color: $bg;
+  border-radius: 10000px;
+  width: 30%;
+}
+@mixin game_box {
+  padding: $padding * 0.2;
+  border-radius: 100000px;
+  background-color: white;
+  cursor: pointer;
+}
+.game {
+  position: relative;
+  @include md {
+    margin: 3rem;
+  }
+}
+.rock {
+  @include game($bg: $Rock);
+  position: absolute;
+  left: 100px;
+  bottom: 0;
+  @include sm {
+    left: 82px;
+  }
+  &_box {
+    @include game_box;
+  }
+}
+
+.paper {
+  @include game($bg: $Paper);
+  top: -27px;
+  left: -18px;
+  position: absolute;
+  &_box {
+    @include game_box;
+  }
+}
+
+.scissors {
+  @include game($bg: $Scissors);
+  position: absolute;
+  top: -27px;
+  right: -10px;
+  &_box {
+    @include game_box;
+  }
+}
+// Rules
+.rules {
+  align-self: end;
+  margin-right: 20px;
+  @include md {
+    margin-right: 0;
+    align-self: center;
+  }
+  @include sm {
+    justify-self: start;
+  }
+
+  // cursor: pointer;
+  &_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    @include sm {
+      height: 100vh;
+      width: 100vw;
+    }
+  }
+  &_rule {
+    // text-align: end;
+    border: 1px solid white;
+    padding: $padding * 0.2 2rem;
+    color: white;
+    cursor: pointer;
+  }
+}
+// when i click on the scissors , paper or rock
+@mixin click($bg: $paper) {
+  // padding: $padding * 1;
+  height: 200px;
+  width: 200px;
+  background-color: $bg;
+  border-radius: 10000px;
+  @include sm {
+    height: 150px;
+    width: 150px;
+  }
+  // width: 50%;
+}
+@mixin click_box {
+  // padding: $padding * 1;
+  height: 100px;
+  width: 100px;
+  border-radius: 100000px;
+  background-color: white;
+  @include sm {
+    height: 100px;
+    width: 100px;
+  }
+}
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chose {
+  @include md {
+    gap: 3rem;
+  }
+
+  &_paper {
+    @include click($bg: $Paper);
+    @include center;
+    // width: 100%;
+  }
+  &_scissors {
+    @include click($bg: $Scissors);
+    @include center;
+  }
+  &_rock {
+    @include click($bg: $Rock);
+    @include center;
+  }
+  &_box {
+    @include click_box;
+    @include center;
+  }
+}
+.playing {
+  // background-color: red;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  @include md {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 4rem;
+  }
+  @include sm {
+    row-gap: 10px;
+  }
+}
+.player {
+  @include md {
+    order: 0;
+    align-self: start;
+  }
+  @include sm {
+    & h3 {
+      margin: 4px 0;
+    }
+  }
+}
+.computer {
+  @include md {
+    order: 1;
+    align-self: start;
+  }
+  @include sm {
+    & h3 {
+      margin: 4px 0;
+    }
+  }
+}
+// decide
+.decide {
+  align-self: end;
+  @include center;
+  flex-direction: column;
+  & h2 {
+    margin: 1rem 0;
+  }
+  @include md {
+    order: 2;
+    grid-column: span 2;
+    // margin: 0 auto;
+    // & h2 {
+    //   margin: 1rem 0;
+    // }
+  }
+  @include sm {
+    & h2 {
+      font-size: 20px;
+    }
+    & button {
+      padding: 1rem 2rem;
+    }
+  }
+}
